@@ -13,7 +13,7 @@ INTERFACE
  	Uses Crt, SysUtils, TypInfo;
  	
  	//énumération de formes
- 	type tForme = (Carre=1, Rond, Triangle, Etoile, Plus, Fois, Losange, Pentagone, Hexagone, Moins);
+ 	type tForme = (Carre=1, Rond, Triangle, Etoile, Plus, Fois, Losange, Coeur, Trefle, Arobase);
 
  	//énumération de couleurs
  	type tCouleurs = (Bleu=1, Vert, Rouge, Blanc, Noir, Jaune, Magenta, Rose, Cyan, Orange);
@@ -124,51 +124,37 @@ INTERFACE
 IMPLEMENTATION
 
 
-FUNCTION demanderNombre(max, min: Integer; text: String): Integer;
-VAR
-	res: Integer;
-BEGIN
-	REPEAT
-		writeln('Rentrez un nombre comprit entre ', min, ' et ', max, ' (', text,')');
-		readln(res);
-	UNTIL(res>=min) AND (res<=max);
-	demanderNombre:= res;
-END;
-
-(* ------------------------------------------------------------------------------------
- -- Fonction          : demanderNombre(minMax: Integer; biggerLesser: boolean; text: String): Integer
- -- Auteur            : Guillaume Quentin
- -- Date de creation  : 16 May 2018 (Wednesday) 10:46
- --
- -- Remarque          : Surcharge de demanderNombre.
- -- But               : Renvoyer un nombre entré par l'utilisateur(plus petit ou plus grand
- 						que minMax)
- -- Pré conditions    : minMax: Un nombre
- 						biggerLesser: un booléen. True: le nombre entré doit être plus grand
- 						que minMax, False: le nombre doit être plus petit
- -- Post conditions   : Renvoyer un nombre entré par l'utilisateur(plus petit ou plus grand
- 						que minMax)
- ------------------------------------------------------------------------------------*)
-FUNCTION demanderNombre(minMax: Integer; biggerLesser: boolean; text:String): Integer;
-VAR
-	res: Integer;
-BEGIN
-	IF(biggerLesser) THEN
+	FUNCTION demanderNombre(max, min: Integer; text: String): Integer;
+	VAR
+		res: Integer;
 	BEGIN
 		REPEAT
-			writeln('Rentrez un nombre plus grand que ', minMax, ' (', text,')');
+			writeln('Rentrez un nombre comprit entre ', min, ' et ', max, ' (', text,')');
 			readln(res);
-		UNTIL(res>=minMax);
-	END
-	ELSE
-	BEGIN
-		REPEAT
-			writeln('Rentrez un nombre plus petit que ', minMax, ' (', text,')');
-			readln(res);
-		UNTIL(res<=minMax);
+		UNTIL(res>=min) AND (res<=max);
+		demanderNombre:= res;
 	END;
 
-	demanderNombre:= res;
-END;
+
+	FUNCTION demanderNombre(minMax: Integer; biggerLesser: boolean; text:String): Integer;
+	VAR
+		res: Integer;
+	BEGIN
+		IF(biggerLesser) THEN
+		BEGIN
+			REPEAT
+				writeln('Rentrez un nombre plus grand que ', minMax, ' (', text,')');
+				readln(res);
+			UNTIL(res>=minMax);
+		END
+		ELSE
+		BEGIN
+			REPEAT
+				writeln('Rentrez un nombre plus petit que ', minMax, ' (', text,')');
+				readln(res);
+			UNTIL(res<=minMax);
+		END;
+		demanderNombre:= res;
+	END;
 end.
  	
