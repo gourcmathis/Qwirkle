@@ -16,7 +16,7 @@ INTERFACE
  	type tForme = (Carre=1, Rond, Triangle, Etoile, Plus, Fois, Losange, Coeur, Trefle, Arobase);
 
  	//énumération de couleurs
- 	type tCouleurs = (Bleu=1, Vert, Rouge, Blanc, Noir, Jaune, Magenta, Rose, Cyan, Orange);
+ 	type tCouleurs = (Bleu=1, Vert, Rouge, Blanc, Noir, Jaune, Magenta, Cyan, Rose, Orange);
 
  	//Joueur humain ou IA
  	type HorR = (Humain, Robot);
@@ -46,6 +46,9 @@ INTERFACE
 
  	//pointeur vers une pioche
  	type pointPioche = ^tPioche;
+
+ 	//pointeur vers un pion
+ 	type pointPion = ^tPion;
 
  	//Les règles
  	type
