@@ -44,12 +44,6 @@ INTERFACE
  		nombre: Integer;
  		end;
 
- 	//pointeur vers une pioche
- 	type pointPioche = ^tPioche;
-
- 	//pointeur vers un pion
- 	type pointPion = ^tPion;
-
  	//Les règles du jeu
  	type
  		tRegle = record
@@ -76,9 +70,6 @@ INTERFACE
  		typeJoueur: HorR;
  		end;
 
- 	//Grille de jeu
- 	type tGrille = ARRAY OF ARRAY OF ^tPion;
-
  	//Liste de joueurs
  	type 
  		tListeJoueur = record
@@ -94,6 +85,28 @@ INTERFACE
  		listeJoueurs: tListeJoueur;
  		parametres: tRegle;
  		end;
+	
+	//Main du joueur
+	type
+    	Resinitmain=record
+    	main:ptrmain;
+    	pioche:ptrpioche;
+    	nbpiece:integer;
+    	end;
+
+    //pointeur vers une pioche
+ 	type pointPioche = ^tPioche;
+
+ 	//pointeur vers un pion
+ 	type pointPion = ^tPion;
+
+ 	//Pointeur main
+ 	type ptrmain=^tMain;
+
+ 	 	//Grille de jeu
+ 	type tGrille = ARRAY OF ARRAY OF pointPion;
+
+
 
  		(* ------------------------------------------------------------------------------------
 		-- Fonction          : demanderNombre(max, min: Integer; text: String): Integer
