@@ -50,7 +50,7 @@ INTERFACE
  	//pointeur vers un pion
  	type pointPion = ^tPion;
 
- 	//Les règles
+ 	//Les règles du jeu
  	type
  		tRegle = record
  		nFormes: integer;
