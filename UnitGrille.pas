@@ -39,7 +39,85 @@ FUNCTION placeLibre(x,y: integer;grille: tGrille) : boolean;
  -- Post conditions   : Aucun
  ------------------------------------------------------------------------------------*)
 
-FUNCTION coupValide(x,y: integer;grille: tGrille) : boolean;
+FUNCTION pionPasSeul(x,y: integer;grille: tGrille) : boolean;
+
+(* ------------------------------------------------------------------------------------
+ -- Fonction          : coupValide(x,y: integer;grille: tGrille) : TypeDeRetour
+ -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
+ -- Date de creation  : Aucun à Aucun
+ --
+ -- But               : Aucun
+ -- Remarques         : Aucune
+ -- Pré conditions    : Aucun
+ -- Post conditions   : Aucun
+ ------------------------------------------------------------------------------------*)
+
+FUNCTION coupValide(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
+
+(* ------------------------------------------------------------------------------------
+ -- Fonction          : verifDroite(x,y: integer;grille: tGrille;pion: pointPion) : boolean
+ -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
+ -- Date de creation  : Aucun à Aucun
+ --
+ -- But               : Aucun
+ -- Remarques         : Aucune
+ -- Pré conditions    : Aucun
+ -- Post conditions   : Aucun
+ ------------------------------------------------------------------------------------*)
+
+FUNCTION verifDroite(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
+
+(* ------------------------------------------------------------------------------------
+ -- Fonction          : verifGauche(x,y: integer;grille: tGrille;pion: pointPion) : boolean
+ -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
+ -- Date de creation  : Aucun à Aucun
+ --
+ -- But               : Aucun
+ -- Remarques         : Aucune
+ -- Pré conditions    : Aucun
+ -- Post conditions   : Aucun
+ ------------------------------------------------------------------------------------*)
+
+FUNCTION VerifGauche(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
+
+(* ------------------------------------------------------------------------------------
+ -- Fonction          : verifHaut(x,y: integer;grille: tGrille;pion: pointPion) : boolean
+ -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
+ -- Date de creation  : Aucun à Aucun
+ --
+ -- But               : Aucun
+ -- Remarques         : Aucune
+ -- Pré conditions    : Aucun
+ -- Post conditions   : Aucun
+ ------------------------------------------------------------------------------------*)
+
+FUNCTION verifHaut(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
+
+(* ------------------------------------------------------------------------------------
+ -- Fonction          : verifBas(x,y: integer;grille: tGrille;pion: pointPion) : boolean
+ -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
+ -- Date de creation  : Aucun à Aucun
+ --
+ -- But               : Aucun
+ -- Remarques         : Aucune
+ -- Pré conditions    : Aucun
+ -- Post conditions   : Aucun
+ ------------------------------------------------------------------------------------*)
+
+FUNCTION verifBas(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
+
+(* ------------------------------------------------------------------------------------
+ -- Fonction          : verifLineaire(x,y: integer;grille: tGrille;pion: pointPion) : boolean
+ -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
+ -- Date de creation  : Aucun à Aucun
+ --
+ -- But               : Aucun
+ -- Remarques         : Aucune
+ -- Pré conditions    : Aucun
+ -- Post conditions   : Aucun
+ ------------------------------------------------------------------------------------*)
+
+FUNCTION verifLineaire(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
 
 (* ------------------------------------------------------------------------------------
  -- Fonction          : placerPremierPion(grille: tGrille; pion: tPion;regle: tRegle) : tGrille
@@ -108,6 +186,8 @@ FUNCTION afficherGrille(regle: tRegle; grille: tGrille) : tGrille;
 
 IMPLEMENTATION
 
+// INITIALISATION DE LA GRILLE
+
 FUNCTION initGrille(regle: tRegle) : tgrille;
 VAR
    grille: tGrille;
@@ -129,6 +209,8 @@ BEGIN
 END;
 
 
+// VERIFICATION D'UN COUP VALIDE
+
 
 FUNCTION placeLibre(x,y: integer;grille: tGrille) : boolean;
 BEGIN
@@ -137,7 +219,7 @@ END;
 
 
 
-FUNCTION coupValide(x,y: integer;grille: tGrille) : boolean;
+FUNCTION pionPasSeul(x,y: integer;grille: tGrille) : boolean;
 VAR
 	res: boolean;
 BEGIN
@@ -146,11 +228,94 @@ BEGIN
 	BEGIN
 		res:= false;
 	END;
-	coupValide := res;
+	pionPasSeul := res;
 END;
 
 
 
+
+
+FUNCTION verifDroite(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
+VAR
+	res: boolean;
+BEGIN
+	res:=true;
+	WHILE (grille[x,y+1]<>Nil) DO
+	BEGIN
+		IF (((pion^.couleur=grille[x,y+1]^.couleur) and (pion^.forme=grille[x,y+1]^.forme)) or ((pion^.couleur<>grille[x,y+1]^.couleur) and (pion^.forme<>grille[x,y+1]^.forme))) THEN
+		BEGIN
+			res:=false;
+		END;
+		y:=y+1;
+	END;
+	verifDroite := res;
+END;
+
+FUNCTION verifGauche(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
+VAR
+	res: boolean;
+BEGIN
+	res:=true;
+	WHILE (grille[x,y-1]<>Nil) DO
+	BEGIN
+		IF (((pion^.couleur=grille[x,y-1]^.couleur) and (pion^.forme=grille[x,y-1]^.forme)) or ((pion^.couleur<>grille[x,y-1]^.couleur) and (pion^.forme<>grille[x,y-1]^.forme))) THEN
+		BEGIN
+			res:=false;
+		END;
+		y:=y-1;
+	END;
+	verifGauche := res;
+END;
+
+FUNCTION verifHaut(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
+VAR
+	res: boolean;
+BEGIN
+	res:=true;
+	WHILE (grille[x-1,y]<>Nil) DO
+	BEGIN
+		IF (((pion^.couleur=grille[x-1,y]^.couleur) and (pion^.forme=grille[x-1,y]^.forme)) or ((pion^.couleur<>grille[x-1,y]^.couleur) and (pion^.forme<>grille[x-1,y]^.forme))) THEN
+		BEGIN
+			res:=false;
+		END;
+		x:=x-1;
+	END;
+	verifHaut := res;
+END;
+
+FUNCTION verifBas(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
+VAR
+	res: boolean;
+BEGIN
+	res:=true;
+	WHILE (grille[x+1,y]<>Nil) DO
+	BEGIN
+		IF (((pion^.couleur=grille[x+1,y]^.couleur) and (pion^.forme=grille[x+1,y]^.forme)) or ((pion^.couleur<>grille[x+1,y]^.couleur) and (pion^.forme<>grille[x+1,y]^.forme))) THEN
+		BEGIN
+			res:=false;
+		END;
+		x:=x+1;
+	END;
+	verifBas := res;
+END;
+
+
+
+
+
+FUNCTION verifLineaire(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
+
+BEGIN
+	verifLineaire := verifHaut(x,y,grille,pion) and verifBas(x,y,grille,pion) and verifDroite(x,y,grille,pion) and VerifGauche(x,y,grille,pion);
+END;
+
+FUNCTION coupValide(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
+BEGIN
+	coupValide := placeLibre(x,y,grille) and pionPasSeul(x,y,grille) and  verifLineaire(x,y,grille,pion);
+END;
+
+
+// PLACEMENT DES PIONS
 
 
 FUNCTION placerPremierPion(grille: tGrille; pion: tPion;regle: tRegle) : tGrille;
@@ -185,7 +350,7 @@ BEGIN
    x:=(demanderNombre(tailleEntiere-2,1,'coordonnée y'));
    new(Ppion);
    Ppion^ := pion;  
-   IF (placeLibre(x,y,grille) and coupValide(x,y,grille) ) THEN
+   IF (coupValide(x,y,grille,Ppion)) THEN
    BEGIN
       grille[x,y]:=Ppion;	
       res := grille;
@@ -197,6 +362,9 @@ BEGIN
    END;
    placerPion:= res;
 END;
+
+
+// DONNER UNE FORME ET UNE COULEUR AUX PION
 
 
 PROCEDURE couleur(couleur: tCouleurs);
@@ -254,7 +422,7 @@ BEGIN
 	END;
 	IF (forme=tForme(2)) THEN
 	BEGIN
-		write('O ');
+		write('o ');
 	END;
 	IF (forme=tForme(3)) THEN
 	BEGIN
@@ -290,6 +458,10 @@ BEGIN
 	END;
 END;
 	
+
+// AFFICHER LA GRILLE
+
+
 FUNCTION afficherGrille(regle: tRegle; grille: tGrille) : tGrille;
 VAR
 	taille: real;
