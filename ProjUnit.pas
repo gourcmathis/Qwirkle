@@ -16,7 +16,7 @@ INTERFACE
  	type tForme = (Carre=1, Rond, Triangle, Etoile, Plus, Fois, Losange, Coeur, Trefle, Arobase);
 
  	//énumération de couleurs
- 	type tCouleurs = (Bleu=1, Vert, Rouge, Blanc, Noir, Jaune, Magenta, Cyan, Rose, Orange);
+ 	type tCouleurs = (Bleu=1, Vert, Rouge, Blanc, Noir, Jaune, Violet, Marron, Rose, Orange);
 
  	//Joueur humain ou IA
  	type HorR = (Humain, Robot);
