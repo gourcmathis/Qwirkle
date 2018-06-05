@@ -60,6 +60,15 @@ INTERFACE
  		pion: tPion;
  		end;
 
+ 	 //pointeur vers une pioche
+ 	type pointPioche = ^tPioche;
+
+ 	//pointeur vers un pion
+ 	type pointPion = ^tPion;
+
+ 	//Pointeur main
+ 	type ptrmain=^tMain;
+
  	//Le joueur
  	type
  		tJoueur = record
@@ -77,6 +86,9 @@ INTERFACE
  		joueur: tJoueur;
  		end;
 
+ 	//Grille de jeu
+ 	type tGrille = ARRAY OF ARRAY OF pointPion;
+
  	//Jeu
  	type
  		tJeu = record
@@ -84,28 +96,16 @@ INTERFACE
  		grille: tGrille;
  		listeJoueurs: tListeJoueur;
  		parametres: tRegle;
+ 		nbPioche: Integer;
  		end;
 	
 	//Main du joueur
 	type
     	Resinitmain=record
     	main:ptrmain;
-    	pioche:ptrpioche;
+    	pioche:pointPioche;
     	nbpiece:integer;
     	end;
-
-    //pointeur vers une pioche
- 	type pointPioche = ^tPioche;
-
- 	//pointeur vers un pion
- 	type pointPion = ^tPion;
-
- 	//Pointeur main
- 	type ptrmain=^tMain;
-
- 	 	//Grille de jeu
- 	type tGrille = ARRAY OF ARRAY OF pointPion;
-
 
 
  		(* ------------------------------------------------------------------------------------
