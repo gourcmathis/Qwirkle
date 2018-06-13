@@ -1,7 +1,12 @@
-
-program projet;
+UNIT UnitMain;
+INTERFACE
 uses ProjUnit,UnitPioche,Crt;
-
+function initmain(prem:pointPioche;nbpiece:integer): Resinitmain;
+function renvoyerpion(first1:ptrmain):resinitmain;
+function max1main(first1:ptrmain): Integer;
+function max2main(first1:ptrmain;first2:ptrmain):integer;
+var
+IMPLEMENTATION
 function initmain(prem:pointPioche;nbpiece:integer): Resinitmain;
 var
     res:Resinitmain;
@@ -290,52 +295,4 @@ begin
     end;
     max2main:=b;
 end;
-
-
-
-
-////////////variables
-var  
-    acc:resinitmain;
-    first1,first2:^tMain;
-    prem: ^tPioche;
-    regle : tRegle;
-
-begin
-randomize;
-writeln('ask number');
-regle.nFormes := demandernombre(10,1,'');
-regle.nRepetitions := demandernombre(10,1,'');
-regle.nCouleurs:= demandernombre(10,1,'');
-prem:=initpioche(nil,regle,regle);//pioche
-
-
-writeln('init hand');
-acc:=initmain(prem ,(regle.nFormes) * (regle.nCouleurs));
-//acc:=initmain(prem ,20);
-first1:=acc.main;//main1
-prem:=acc.pioche;//nouvelle pioche
-acc:=initmain(prem ,acc.nbpiece);
-first2:=acc.main;//main2
-
-
-
-prem:=acc.pioche;//nouvelle pioche
-writeln(max2main(first1,first2));
-
-acc:=renvoyerpion(first1);
-
-
 end.
-
-
-
-
-
-
-
-
-
-
-
-
