@@ -19,7 +19,7 @@ UNIT UnitPioche;
  -- Date de creation  : 31 May 2018 (Thursday) 08:32
  --
  -- But               : Initialiser la pioche du jeu
- -- Pré conditions    : 
+ -- Pré conditions    : une pioche vide, un set de regles(a envoyer deux fois)
  -- Post conditions   : 
  ------------------------------------------------------------------------------------*)
 FUNCTION initPioche(pioch: pointPioche; valMax, valeur: tRegle): pointPioche;
@@ -63,8 +63,6 @@ IMPLEMENTATION
 
 FUNCTION initPion(pion: tPion; valeur: tRegle): tPion;
 BEGIN
-	pion.val.pointsV:= 0;
-	pion.val.pointsH:= 0;
 	pion.forme:= tForme(valeur.nFormes);
 	pion.couleur:= tCouleurs(valeur.nCouleurs);
 
@@ -154,8 +152,6 @@ BEGIN
    END;
    supprPioche:= res;
 END;
-
-///////////////////////////////////////////////////NON TESTE///////////////////////////////////////////////////////
 
 FUNCTION tirerPion(pioche: pointPioche; numeroCase: Integer): tPion;
 VAR
