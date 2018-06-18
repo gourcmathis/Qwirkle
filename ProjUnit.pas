@@ -21,19 +21,12 @@ INTERFACE
  	//Joueur humain ou IA
  	type HorR = (Humain, Robot);
 
- 	//Les valeurs des pions
- 	type
- 		tVal = record
- 		pointsV: Integer;
- 		pointsH: Integer;
- 		end;
-
  	//Les Pions
  	type
  		tPion = record
  		forme: tForme;
  		couleur: tCouleurs;
- 		val: tVal;
+ 		justePose: Boolean;
  		end;
 
  	//La pioche
@@ -73,9 +66,8 @@ INTERFACE
  	type
  		tJoueur = record
  		nom: String;
- 		age: Integer;
  		points: Integer;
- 		main: tMain;
+ 		main: ptrMain;
  		typeJoueur: HorR;
  		end;
 
@@ -86,13 +78,16 @@ INTERFACE
  		joueur: tJoueur;
  		end;
 
+ 	//pointeur vers une liste de joueurs
+ 	type pointListeJoueur = ^tListeJoueur;
+
  	//Grille de jeu
  	type tGrille = ARRAY OF ARRAY OF pointPion;
 
  	//Jeu
  	type
  		tJeu = record
- 		Pioche: tPioche;
+ 		Pioche: pointPioche;
  		grille: tGrille;
  		listeJoueurs: tListeJoueur;
  		parametres: tRegle;
