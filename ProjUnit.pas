@@ -21,19 +21,12 @@ INTERFACE
  	//Joueur humain ou IA
  	type HorR = (Humain, Robot);
 
- 	//Les valeurs des pions
- 	type
- 		tVal = record
- 		pointsV: Integer;
- 		pointsH: Integer;
- 		end;
-
  	//Les Pions
  	type
  		tPion = record
  		forme: tForme;
  		couleur: tCouleurs;
- 		val: tVal;
+ 		justePlace: boolean;
  		end;
 
  	//La pioche
