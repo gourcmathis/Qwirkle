@@ -3,11 +3,11 @@ INTERFACE
 USES
 ProjUnit, Crt;
 (* ------------------------------------------------------------------------------------
- -- Fonction          : 
+ -- Fonction          : initGrille(regle: tRegle) : tgrille
  -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
  -- Date de creation  : Aucun à Aucun
  --
- -- But               : Aucun
+ -- But               : Initialiser le plateau
  -- Remarques         : Aucune
  -- Pré conditions    : Aucun
  -- Post conditions   : Aucun
@@ -16,11 +16,11 @@ ProjUnit, Crt;
 FUNCTION initGrille(regle: tRegle) : tgrille;
 
 (* ------------------------------------------------------------------------------------
- -- Fonction          : placeOcupe(grille: tGrille) : boolean
+ -- Fonction          : placeLibre(x,y: integer;grille: tGrille) : boolean
  -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
  -- Date de creation  : 25 May 2018 (Friday) à 15:55
  --
- -- But               : Aucun
+ -- But               : Verifie si la place à laquelle on veut poser le pion est libre ou non
  -- Remarques         : Aucune
  -- Pré conditions    : Aucun
  -- Post conditions   : Aucun
@@ -29,11 +29,11 @@ FUNCTION initGrille(regle: tRegle) : tgrille;
 FUNCTION placeLibre(x,y: integer;grille: tGrille) : boolean;
 
 (* ------------------------------------------------------------------------------------
- -- Fonction          : coupInvalide(grille: tGrille) : boolean
+ -- Fonction          : pionPasSeul(x,y: integer;grille: tGrille) : boolean
  -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
  -- Date de creation  : 25 May 2018 (Friday) à 16:08
  --
- -- But               : Aucun
+ -- But               : Verifie si le pion posé est entouré d'au moins un autre pion
  -- Remarques         : Aucune
  -- Pré conditions    : Aucun
  -- Post conditions   : Aucun
@@ -42,11 +42,11 @@ FUNCTION placeLibre(x,y: integer;grille: tGrille) : boolean;
 FUNCTION pionPasSeul(x,y: integer;grille: tGrille) : boolean;
 
 (* ------------------------------------------------------------------------------------
- -- Fonction          : coupValide(x,y: integer;grille: tGrille) : TypeDeRetour
+ -- Fonction          : coupValide(x,y: integer;grille: tGrille;pion: pointPion) : boolean
  -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
  -- Date de creation  : Aucun à Aucun
  --
- -- But               : Aucun
+ -- But               : Verifie si le coup est valide
  -- Remarques         : Aucune
  -- Pré conditions    : Aucun
  -- Post conditions   : Aucun
@@ -59,7 +59,7 @@ FUNCTION coupValide(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
  -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
  -- Date de creation  : Aucun à Aucun
  --
- -- But               : Aucun
+ -- But               : Verifie à droite du pion posé si le coup est valide 
  -- Remarques         : Aucune
  -- Pré conditions    : Aucun
  -- Post conditions   : Aucun
@@ -72,7 +72,7 @@ FUNCTION verifDroite(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
  -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
  -- Date de creation  : Aucun à Aucun
  --
- -- But               : Aucun
+ -- But               : Verifie à gauche du pion posé si le coup est valide
  -- Remarques         : Aucune
  -- Pré conditions    : Aucun
  -- Post conditions   : Aucun
@@ -85,7 +85,7 @@ FUNCTION VerifGauche(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
  -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
  -- Date de creation  : Aucun à Aucun
  --
- -- But               : Aucun
+ -- But               : Verifie en haut du pion posé si le coup est valide
  -- Remarques         : Aucune
  -- Pré conditions    : Aucun
  -- Post conditions   : Aucun
@@ -98,7 +98,7 @@ FUNCTION verifHaut(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
  -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
  -- Date de creation  : Aucun à Aucun
  --
- -- But               : Aucun
+ -- But               : Verifie en bas du pion posé si le coup est valide
  -- Remarques         : Aucune
  -- Pré conditions    : Aucun
  -- Post conditions   : Aucun
@@ -111,7 +111,7 @@ FUNCTION verifBas(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
  -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
  -- Date de creation  : Aucun à Aucun
  --
- -- But               : Aucun
+ -- But               : Verifie en haut, bas, gauche, droite si le coup est valide 
  -- Remarques         : Aucune
  -- Pré conditions    : Aucun
  -- Post conditions   : Aucun
@@ -119,12 +119,13 @@ FUNCTION verifBas(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
 
 FUNCTION verifLineaire(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
 
+
 (* ------------------------------------------------------------------------------------
  -- Fonction          : placerPremierPion(grille: tGrille; pion: tPion;regle: tRegle) : tGrille
  -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
  -- Date de creation  : Aucun à Aucun
  --
- -- But               : Aucun
+ -- But               : Place le premier pion au centre de la grille
  -- Remarques         : Aucune
  -- Pré conditions    : Aucun
  -- Post conditions   : Aucun
@@ -133,11 +134,11 @@ FUNCTION verifLineaire(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
 FUNCTION placerPremierPion(grille: tGrille; pion: tPion;regle: tRegle) : tGrille;
 
 (* ------------------------------------------------------------------------------------
- -- Fonction          : placerPion(grille: tGrille, pion: tPion) : tGrille
+ -- Fonction          : placerPion(grille: tGrille; pion: tPion;regle: tRegle) : tGrille
  -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
  -- Date de creation  : Aucun à Aucun
  --
- -- But               : Aucun
+ -- But               : Place un pion
  -- Remarques         : Aucune
  -- Pré conditions    : Aucun
  -- Post conditions   : Aucun
@@ -150,7 +151,7 @@ FUNCTION placerPion(grille: tGrille; pion: tPion;regle: tRegle) : tGrille;
  -- Auteur             : Mathis Gourc <gourcmathi@eisti.eu>
  -- Date de creation   : Aucun à Aucun
  --
- -- But                : Aucun
+ -- But                : Colore un pion
  -- Remarques          : Aucune
  -- Pré conditions     : Aucun
  -- Post conditions    : Aucun
@@ -163,7 +164,7 @@ PROCEDURE couleur(couleur: tCouleurs);
  -- Auteur             : Mathis Gourc <gourcmathi@eisti.eu>
  -- Date de creation   : Aucun à Aucun
  --
- -- But                : Aucun
+ -- But                : Donne une forme à un pion
  -- Remarques          : Aucune
  -- Pré conditions     : Aucun
  -- Post conditions    : Aucun
@@ -172,11 +173,11 @@ PROCEDURE couleur(couleur: tCouleurs);
 PROCEDURE forme(forme: tForme);
 
 (* ------------------------------------------------------------------------------------
- -- Fonction          : afficherGrille(Params) : tGrille
+ -- Fonction          : afficherGrille(regle: tRegle; grille: tGrille) : tGrille
  -- Auteur            : Mathis Gourc <gourcmathi@eisti.eu>
  -- Date de creation  : Aucun à Aucun
  --
- -- But               : Aucun
+ -- But               : Afficher la grille
  -- Remarques         : Aucune
  -- Pré conditions    : Aucun
  -- Post conditions   : Aucun
@@ -202,7 +203,7 @@ BEGIN
    BEGIN
       FOR j := 0 TO tailleEntiere-1 DO
       BEGIN
-	 grille[i,j]:= Nil;
+	  grille[i,j]:= Nil;
       END;
    END;
    initGrille := grille;
@@ -271,6 +272,7 @@ FUNCTION verifHaut(x,y: integer;grille: tGrille;pion: pointPion) : boolean;
 VAR
 	res: boolean;
 BEGIN
+	
 	res:=true;
 	WHILE (grille[x-1,y]<>Nil) DO
 	BEGIN
@@ -321,14 +323,12 @@ END;
 FUNCTION placerPremierPion(grille: tGrille; pion: tPion;regle: tRegle) : tGrille;
 VAR
     x,y: integer;
-    taille: real;
-    tailleEntiere: Integer;
+    taille: Integer;
     Ppion: pointPion;
 BEGIN
-	taille:=(sqrt(4*(regle.nFormes*regle.nCouleurs*regle.nRepetitions)));
-	tailleEntiere := Round(taille);
-	x:= tailleEntiere div 2;
-	y:= tailleEntiere div 2;    
+	taille:=length(grille[0]);
+	x:= taille div 2;
+	y:= taille div 2;    
 	new(Ppion);
 	Ppion^:=pion;
 	grille[x,y]:=Ppion;
@@ -339,17 +339,15 @@ FUNCTION placerPion(grille: tGrille; pion: tPion;regle: tRegle) : tGrille;
 VAR
    res: tGrille; 
    x,y: integer;
-   taille: real;
-   tailleEntiere: Integer;
+   taille: integer;
    Ppion: pointPion;
 
 BEGIN
-   taille:=(sqrt(4*(regle.nFormes*regle.nCouleurs*regle.nRepetitions)));
-   tailleEntiere := Round(taille);
-   y:=(demanderNombre(tailleEntiere-2,1,'coordonnée x'));
-   x:=(demanderNombre(tailleEntiere-2,1,'coordonnée y'));
+   taille:=length(grille[0]);
+   y:=(demanderNombre(taille-2,1,'coordonnée x'));
+   x:=(demanderNombre(taille-2,1,'coordonnée y'));
    new(Ppion);
-   Ppion^ := pion;  
+   Ppion^ := pion; 
    IF (coupValide(x,y,grille,Ppion)) THEN
    BEGIN
       grille[x,y]:=Ppion;	
@@ -372,43 +370,43 @@ PROCEDURE couleur(couleur: tCouleurs);
 BEGIN
 	IF (couleur=tCouleurs(1)) THEN
 	BEGIN
-		TextColor(Blue);
+		TextColor(1);
 	END;
 	IF (couleur=tCouleurs(2)) THEN
 	BEGIN
-		TextColor(Green);
+		TextColor(2);
 	END;
 	IF (couleur=tCouleurs(3)) THEN
 	BEGIN
-		TextColor(Red);
+		TextColor(4);
 	END;
 	IF (couleur=tCouleurs(4)) THEN
 	BEGIN
-		TextColor(White);
+		TextColor(15);
 	END;
 	IF (couleur=tCouleurs(5)) THEN
 	BEGIN
-		TextColor(Black);
+		TextColor(8);
 	END;
 	IF (couleur=tCouleurs(6)) THEN
 	BEGIN
-		TextColor(Yellow);
+		TextColor(14);
 	END;
 	IF (couleur=tCouleurs(7)) THEN
 	BEGIN
-		TextColor(Magenta);
+		TextColor(5);
 	END;
 	IF (couleur=tCouleurs(8)) THEN
 	BEGIN
-		TextColor(LightMagenta);
+		TextColor(6);
 	END;
 	IF (couleur=tCouleurs(9)) THEN
 	BEGIN
-		TextColor(Brown);
+		TextColor(13);
 	END;
 	IF (couleur=tCouleurs(10)) THEN
 	BEGIN
-		TextColor(LightRed);
+		TextColor(12);
 	END;
 END;
 
@@ -418,43 +416,43 @@ PROCEDURE forme(forme: tForme);
 BEGIN
 	IF (forme=tForme(1)) THEN
 	BEGIN
-		write('■ ');
+		write('■');
 	END;
 	IF (forme=tForme(2)) THEN
 	BEGIN
-		write('o ');
+		write('o');
 	END;
 	IF (forme=tForme(3)) THEN
 	BEGIN
-		write('▲ ');
+		write('▲');
 	END;
 	IF (forme=tForme(4)) THEN
 	BEGIN
-		write('★ ');
+		write('★');
 	END;
 	IF (forme=tForme(5)) THEN
 	BEGIN
-		write('+ ');
+		write('+');
 	END;
 	IF (forme=tForme(6)) THEN
 	BEGIN
-		write('x ');
+		write('x');
 	END;
 	IF (forme=tForme(7)) THEN
 	BEGIN
-		write('♦ ');
+		write('♦');
 	END;
 	IF (forme=tForme(8)) THEN
 	BEGIN
-		write('♥ ');
+		write('♥');
 	END;
 	IF (forme=tForme(9)) THEN
 	BEGIN
-		write('♣ ');
+		write('♣');
 	END;
 	IF (forme=tForme(10)) THEN
 	BEGIN
-		write('@ ');
+		write('@');
 	END;
 END;
 	
@@ -468,9 +466,13 @@ VAR
 	tailleEntiere : Integer;
 	i,j: integer;
 BEGIN
-	taille:=(sqrt(4*(regle.nFormes*regle.nCouleurs*regle.nRepetitions)));
-    tailleEntiere := Round(taille);
-	SetLength(grille,tailleEntiere,tailleEntiere);
+	tailleEntiere := length(grille[0]);
+	IF (tailleEntiere = 0) THEN
+	BEGIN
+		taille:=(sqrt(4*(regle.nFormes*regle.nCouleurs*regle.nRepetitions)));
+	    tailleEntiere := Round(taille);
+		SetLength(grille,tailleEntiere,tailleEntiere);
+	END;
 	FOR i := 1 TO tailleEntiere-2 DO
 	BEGIN
 		FOR j := 1 TO tailleEntiere-2 DO
@@ -478,12 +480,15 @@ BEGIN
 			TextColor(White);
 			IF (grille[i,j] <> nil) THEN
 			BEGIN
+				write('[');
 				couleur(grille[i,j]^.couleur);
 				forme(grille[i,j]^.forme);
+				TextColor(White);
+				write(']');
 			END
 			ELSE
 			BEGIN
-				write('. ');
+				write('[ ]');
 			END;
 		END;
 		writeln('');
